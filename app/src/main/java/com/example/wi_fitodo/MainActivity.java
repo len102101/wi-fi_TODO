@@ -2,12 +2,16 @@ package com.example.wi_fitodo;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -15,39 +19,35 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    ConnectivityManager connmanager;
-    NetworkInfo netInfo;
-    WifiManager wifiManager;
-    WifiInfo connectionInfo;
+    private static final int LOCATION = 1;
     TextView text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getCurrentSsid();
+        tryToReadSSID();
     }
 
-    public void getCurrentSsid() {
-        String ssid = null;
-        connmanager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        netInfo = connmanager.getActiveNetworkInfo();
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if(grantResults[0] == PackageManager.PERMISSION_GRANTED && requestCode == LOCATION){
+            //User allowed the location and you can read it now
+            tryToReadSSID();
+        }
+    }
 
-        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
-            if (ConnectivityManager.TYPE_WIFI == netInfo.getType()) {
-//                WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-//                WifiInfo info = wifiManager.getConnectionInfo();
-//                ssid = info.getSSID();
-//                text.setText(ssid);
+    private void tryToReadSSID() {
+        text = (TextView) findViewById(R.id.text);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        }else{//Permission already granted
+            WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+            if(wifiInfo.getSupplicantState() == SupplicantState.COMPLETED){
+                String ssid = wifiInfo.getSSID();
+                text.setText(ssid);
             }
-            }
-        else {
-            new AlertDialog.Builder(this).setMessage("인터넷에 연결되지 않았습니다.").setCancelable(false).setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    finishAffinity();
-                }
-            }).show();
         }
     }
 }
