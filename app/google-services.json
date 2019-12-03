@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "178616100358",
+    "firebase_url": "https://wi-fi-todo.firebaseio.com",
+    "project_id": "wi-fi-todo",
+    "storage_bucket": "wi-fi-todo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:178616100358:android:d02c934dace7b43bc70587",
+        "android_client_info": {
+          "package_name": "com.example.wi_fitodo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "178616100358-68qacmgmduqc60kbbjlm7ga8svs4sgck.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2plHv27anjQk3S8OTEXsBNUCJqTGc7Ik"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "178616100358-68qacmgmduqc60kbbjlm7ga8svs4sgck.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
