@@ -1,8 +1,10 @@
 package com.example.wi_fitodo;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.os.Build;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -15,15 +17,23 @@ import android.widget.Toast;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import androidx.annotation.RequiresApi;
+
 public class plus_customdialog {
     private Context context;
     int mYear, mMonth, mDay;
 
-    public plus_customdialog(Context context) {
-        this.context = context;
-    }
+    public plus_customdialog(Context context) {this.context = context;}
+
+    private DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            Toast.makeText(view.getContext(), year + "년" + monthOfYear + "월" + dayOfMonth +"일", Toast.LENGTH_SHORT).show();
+        }
+    };
 
     // 호출할 다이얼로그 함수를 정의한다.
+    @SuppressLint("ClickableViewAccessibility")
     public void callFunction(final TextView textView) {
 
         // 커스텀 다이얼로그를 정의하기위해 Dialog클래스를 생성한다.
@@ -74,33 +84,12 @@ public class plus_customdialog {
                 dlg.dismiss();
             }
         });
-
-        due.setOnTouchListener(new View.OnTouchListener() {
+        due.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                //날짜 대화상자 리스너 부분
-
-//                DatePickerDialog.OnDateSetListener mDateSetListener =
-//
-//                        new DatePickerDialog.OnDateSetListener() {
-//                            @Override
-//                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-//                                // TODO Auto-generated method stub
-//                                //사용자가 입력한 값을 가져온뒤
-//                                mYear = year;
-//                                mMonth = monthOfYear;
-//                                mDay = dayOfMonth;
-//
-//                                due.setText(String.format("%d/%d/%d", mYear,mMonth + 1, mDay));
-//                            }
-//
-//                        };
-                DatePickerDialog dia = new DatePickerDialog(view.getContext());
+            public void onClick(View v) {
+                DatePickerDialog dia = new DatePickerDialog(v.getContext(), listener, 2019, 10, 10);
                 dia.show();
-
-                return false;
             }
         });
     }
-
 }

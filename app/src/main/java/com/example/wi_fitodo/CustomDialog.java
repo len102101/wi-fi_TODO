@@ -11,9 +11,20 @@ import androidx.annotation.NonNull;
 
 public class CustomDialog extends Dialog {
 
+    interface CustomDialogListener{
+        void onPositiveClicked(String name, String age, String addr);
+        void onNegativeClicked();
+    }
+
     private Button mPositiveButton;
 
+    public void setDialogListener(CustomDialogListener customDialogListener){
+        this.customDialogListener = customDialogListener;
+    }
+
+
     private View.OnClickListener mPositiveListener;
+    private CustomDialogListener customDialogListener;
 
 
     @Override
@@ -38,6 +49,5 @@ public class CustomDialog extends Dialog {
     //생성자 생성
     public CustomDialog(@NonNull Context context, View.OnClickListener positiveListener) {
         super(context);
-        this.mPositiveListener = positiveListener;
     }
 }

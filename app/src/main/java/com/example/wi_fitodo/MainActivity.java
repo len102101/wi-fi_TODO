@@ -1,4 +1,4 @@
-package com.cookandroid.test;
+package com.example.wi_fitodo;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
@@ -110,35 +110,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         plus.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
-//                // 커스텀 다이얼로그를 생성한다. 사용자가 만든 클래스이다.
-////                plus_customdialog customDialog = new plus_customdialog(MainActivity.this);
-////
-////                // 커스텀 다이얼로그를 호출한다.
-////                // 커스텀 다이얼로그의 결과를 출력할 TextView를 매개변수로 같이 넘겨준다.
-////                customDialog.callFunction(textView);
+                 // 커스텀 다이얼로그를 생성한다. 사용자가 만든 클래스이다.
+                plus_customdialog customDialog = new plus_customdialog(MainActivity.this);
+
+                // 커스텀 다이얼로그를 호출한다.
+                // 커스텀 다이얼로그의 결과를 출력할 TextView를 매개변수로 같이 넘겨준다.
+                customDialog.callFunction(textView);
 
 //                DatePickerDialog dia = new DatePickerDialog(view.getContext());
 //                dia.show();
-
-                DatePickerDialog dialog = new DatePickerDialog(view.getContext(), new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int year, int month, int date) {
-
-                        String msg = String.format("%d 년 %d 월 %d 일", year, month+1, date);
-                        Toast.makeText(PickerActivity.this, msg, Toast.LENGTH_SHORT).show();
-                    }
-                }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
-
-                dialog.getDatePicker().setMaxDate(new Date().getTime());    //입력한 날짜 이후로 클릭 안되게 옵션
-                dialog.show();
             }
         });
-
-
-
     }
 }
