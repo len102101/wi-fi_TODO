@@ -28,7 +28,7 @@ public class plus_customdialog {
     private DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            Toast.makeText(view.getContext(), year + "년" + monthOfYear + "월" + dayOfMonth +"일", Toast.LENGTH_SHORT).show();
+            Toast.makeText(view.getContext(), year + "년" + (monthOfYear + 1) + "월" + dayOfMonth +"일", Toast.LENGTH_SHORT).show();
         }
     };
 
