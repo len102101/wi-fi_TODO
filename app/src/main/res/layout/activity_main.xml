@@ -17,8 +17,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="40dp"
+            android:textSize="50dp"
             android:text="ToDo"
+            android:textStyle="bold"
             android:layout_marginLeft="20dp"
             android:padding="10dp"
             android:textColor="#FFFFFF"/>
@@ -34,17 +35,20 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="25dp"
+        android:background="@drawable/rounded"
+        android:orientation="vertical"
+        android:padding="15dp">
 
         <LinearLayout
+            android:id="@+id/list1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="25dp"
-            android:background="@drawable/rounded"
-            android:orientation="vertical"
-            android:padding="15dp">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -85,9 +89,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="asdf"
-                android:textSize="17dp"
+                android:textSize="20dp"
                 android:textColor="#555555"
                 />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2019-12-04"
+                android:textColor="#555555"
+                android:layout_marginLeft="35dp"/>
 
             <View
                 android:layout_marginTop="5dp"
@@ -96,16 +107,18 @@
                 android:layout_centerInParent="true"
                 android:background="#EEEEEE"/>
 
-            <ImageButton
-                android:id="@+id/plus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/plus"
-                android:background="@drawable/btnradius_plus"
-                android:layout_gravity="center_vertical|right"
-                />
 
         </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/btnradius_plus"
+            android:src="@drawable/plus"
+            android:layout_alignParentRight="true" />
+
     </RelativeLayout>
 
 
