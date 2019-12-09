@@ -1,6 +1,5 @@
 package com.example.wi_fitodo;
 
-import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -12,14 +11,9 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.Calendar;
-import java.util.Date;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
@@ -121,10 +115,9 @@ public class MainActivity extends AppCompatActivity {
                 // 커스텀 다이얼로그를 호출한다.
                 // 커스텀 다이얼로그의 결과를 출력할 TextView를 매개변수로 같이 넘겨준다.
                 customDialog.callFunction(textView);
-
-//                DatePickerDialog dia = new DatePickerDialog(view.getContext());
-//                dia.show();
             }
         });
     }
+
+
 }
