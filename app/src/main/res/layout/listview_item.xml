@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/chbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:button="@drawable/radio_button"/>
+
+            <TextView
+                android:id="@+id/texttodo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:textColor="#353535"
+                android:text="위캔저스트댄스투디스"
+                android:layout_marginTop="3dp"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <CheckBox
+                android:id="@+id/v"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:button="@drawable/checkbox_v"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textcontents"
+            android:visibility="gone"
+            android:layout_marginLeft="35dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="asdf"
+            android:textSize="20dp"
+            android:textColor="#555555"
+            />
+
+        <TextView
+            android:id="@+id/textdue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2019-12-04"
+            android:textColor="#555555"
+            android:layout_marginLeft="35dp"/>
+
+        <View
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_centerInParent="true"
+            android:background="#EEEEEE"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>
