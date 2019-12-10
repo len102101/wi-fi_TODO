@@ -79,6 +79,41 @@ public class MainActivity extends AppCompatActivity {
                     oItem.strtodo = snapshot.child("title").getValue().toString();
                     oItem.strcontents = snapshot.child("context").getValue().toString();
                     oItem.strdue = snapshot.child("date").getValue().toString();
+                    oItem.onClickListener = new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v){
+                            int nViewTag = Integer.parseInt((String)v.getTag());
+                            View oParentView = (View)v.getParent();
+                            switch (nViewTag)
+                            {
+                                case 1: // ochbox
+                                    CheckBox chbox = (CheckBox)oParentView.findViewById(R.id.chbox);
+                                    TextView texttodo = (TextView)oParentView.findViewById(R.id.texttodo);
+                                    if(chbox.isChecked()) {    //체크 박스가 체크 된 경우
+                                        texttodo.setPaintFlags(texttodo.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
+                                        texttodo.setTextColor(Color.parseColor("#999999"));
+                                    }
+                                    else {   //체크 박스가 해제 된 경우
+                                        texttodo.setPaintFlags(0);
+                                        texttodo.setTextColor(Color.parseColor("#353535"));
+                                    }
+                                    break;
+                                case 2: // ovchbox
+                                    View oPParentView = (View)v.getParent().getParent();
+                                    CheckBox chboxv = (CheckBox)oParentView.findViewById(R.id.v);
+                                    TextView contents = (TextView)oPParentView.findViewById(R.id.textcontents);
+                                    if(chboxv.isChecked()) {    //체크 박스가 체크 된 경우
+                                        contents.setVisibility(View.VISIBLE);
+                                    }
+                                    else {   //체크 박스가 해제 된 경우
+                                        contents.setVisibility(View.GONE);
+                                    }
+                                    break;
+
+                            }
+                        }
+
+                    };
                     oData.add(oItem);
                 }
                 m_oListView = (ListView)findViewById(R.id.listView);
@@ -86,11 +121,15 @@ public class MainActivity extends AppCompatActivity {
                 m_oListView.setAdapter(oAdapter);
             }
 
+
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
     }
+
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
