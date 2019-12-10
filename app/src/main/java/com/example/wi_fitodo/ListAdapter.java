@@ -5,8 +5,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -60,21 +62,20 @@ public class ListAdapter extends BaseAdapter {
         TextView otextdue = (TextView) convertView.findViewById(R.id.textdue);
         CheckBox ochbox = (CheckBox) convertView.findViewById(R.id.chbox);
         CheckBox ovchbox = (CheckBox) convertView.findViewById(R.id.v);
-        ListView oListView = (ListView)convertView.findViewById(R.id.listView);
+        LinearLayout olistlayout=(LinearLayout)convertView.findViewById(R.id.list) ;
 
         otexttodo.setText(m_oData.get(position).strtodo);
         otextcontents.setText(m_oData.get(position).strcontents);
         otextdue.setText(m_oData.get(position).strdue);
 
 
-
-
         ochbox.setTag("1");
         ovchbox.setTag("2");
+        olistlayout.setTag("3");
 
         ochbox.setOnClickListener(m_oData.get(position).onClickListener);
         ovchbox.setOnClickListener(m_oData.get(position).onClickListener);
-
+        olistlayout.setOnClickListener(m_oData.get(position).onClickListener);
 
         convertView.setTag(""+position);
         return convertView;
