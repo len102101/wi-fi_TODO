@@ -5,14 +5,13 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class listview_mainactivity extends AppCompatActivity implements View.OnClickListener{
     private ListView m_oListView = null;
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -37,9 +36,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
 // ListView, Adapter 생성 및 연결 ------------------------
-//        m_oListView = (ListView)findViewById(R.id.listView);
-//        ListAdapter oAdapter = new ListAdapter(oData);
-//        m_oListView.setAdapter(oAdapter);
+        m_oListView = (ListView)findViewById(R.id.listView);
+        ListAdapter oAdapter = new ListAdapter(oData);
+        m_oListView.setAdapter(oAdapter);
     }
 
     public void onClick(View v){

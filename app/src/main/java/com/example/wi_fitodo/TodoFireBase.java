@@ -23,6 +23,5 @@ public class TodoFireBase{
         reference = FirebaseDatabase.getInstance().getReference();
         String key = reference.child("todos").push().getKey();
         reference.child("todos").child(ssid).child(key).setValue(todoData);
-        // reference.child("todos").setValue(todoData);
     }
 }
