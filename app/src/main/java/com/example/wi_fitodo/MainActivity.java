@@ -29,6 +29,7 @@ import androidx.core.app.ActivityCompat;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -46,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
         plus = (ImageButton)findViewById(R.id.plus);
         this.ssid = getSSID();
-
         setTodoList();
         String a = FirebaseDatabase.getInstance().getReference().toString() + " END";
         Toast.makeText(this, a, Toast.LENGTH_LONG);
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v){
                             int nViewTag = Integer.parseInt((String)v.getTag());
-                            View oParentView = (View)v.getParent();
+                            final View oParentView = (View)v.getParent();
                             switch (nViewTag)
                             {
                                 case 1: // ochbox
@@ -110,22 +110,23 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                     break;
                                 case 3:
-                                    //                Toast.makeText(getApplicationContext(),"착즙착즙",Toast.LENGTH_LONG).show();
                                     AlertDialog.Builder alert_confirm = new AlertDialog.Builder(MainActivity.this);
                                     alert_confirm.setMessage("What do you want?").setPositiveButton("Update",
                                             new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int which) {
-                                                    // 'YES'
-                                                    Toast.makeText(getApplicationContext(),"YES!",Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(getApplicationContext(),"I will be back",Toast.LENGTH_LONG).show();
                                                 }
                                             }).setNegativeButton("Delete",
                                             new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int which) {
-                                                    // 'No'
-                                                    Toast.makeText(getApplicationContext(),"노논",Toast.LENGTH_LONG).show();
-                                                    //                                list1.setVisibility(View.GONE);
+                                                    View oPParentView = (View)oParentView.getParent();
+                                                    TextView pkText =  (TextView)oParentView.findViewById(R.id.pkValue);
+                                                    // Toast.makeText(getApplicationContext(),pkText.getText().toString(),Toast.LENGTH_LONG).show();
+                                                    //list1.setVisibility(View.GONE);
+                                                    deleteFirebase(pkText.getText().toString());
+                                                    Toast.makeText(getApplicationContext(),"삭제되엇습니다.",Toast.LENGTH_LONG).show();
                                                     return;
                                                 }
                                             });
@@ -172,5 +173,10 @@ public class MainActivity extends AppCompatActivity {
             return ssid;
         }
         return "no internet";
+    }
+
+    private void deleteFirebase(String key){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        reference.child("todos").child(ssid).child(key).setValue(null);
     }
 }

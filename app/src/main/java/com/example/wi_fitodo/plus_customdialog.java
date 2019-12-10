@@ -90,7 +90,7 @@ public class plus_customdialog {
             @Override
             public void onClick(View view) {
 
-                TodoFireBase todoData = new TodoFireBase(todo.getText().toString(), contents.getText().toString(), dateText, false);
+                TodoFireBase todoData = new TodoFireBase(todo.getText().toString(), contents.getText().toString(), due.getText().toString(), false);
                 todoData.insertData(ssid);
 
                 // 커스텀 다이얼로그를 종료한다.

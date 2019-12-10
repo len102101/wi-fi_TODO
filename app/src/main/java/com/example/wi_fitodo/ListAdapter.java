@@ -60,6 +60,7 @@ public class ListAdapter extends BaseAdapter {
         TextView otexttodo = (TextView) convertView.findViewById(R.id.texttodo);
         TextView otextcontents = (TextView) convertView.findViewById(R.id.textcontents);
         TextView otextdue = (TextView) convertView.findViewById(R.id.textdue);
+        TextView otextpk = (TextView) convertView.findViewById(R.id.pkValue);
         CheckBox ochbox = (CheckBox) convertView.findViewById(R.id.chbox);
         CheckBox ovchbox = (CheckBox) convertView.findViewById(R.id.v);
         LinearLayout olistlayout=(LinearLayout)convertView.findViewById(R.id.list) ;
@@ -67,6 +68,7 @@ public class ListAdapter extends BaseAdapter {
         otexttodo.setText(m_oData.get(position).strtodo);
         otextcontents.setText(m_oData.get(position).strcontents);
         otextdue.setText(m_oData.get(position).strdue);
+        otextpk.setText(m_oData.get(position).strpk);
 
 
         ochbox.setTag("1");
