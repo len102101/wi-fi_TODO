@@ -109,6 +109,29 @@ public class MainActivity extends AppCompatActivity {
                                         contents.setVisibility(View.GONE);
                                     }
                                     break;
+                                case 3:
+                                    //                Toast.makeText(getApplicationContext(),"착즙착즙",Toast.LENGTH_LONG).show();
+                                    AlertDialog.Builder alert_confirm = new AlertDialog.Builder(MainActivity.this);
+                                    alert_confirm.setMessage("What do you want?").setPositiveButton("Update",
+                                            new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    // 'YES'
+                                                    Toast.makeText(getApplicationContext(),"YES!",Toast.LENGTH_LONG).show();
+                                                }
+                                            }).setNegativeButton("Delete",
+                                            new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    // 'No'
+                                                    Toast.makeText(getApplicationContext(),"노논",Toast.LENGTH_LONG).show();
+                                                    //                                list1.setVisibility(View.GONE);
+                                                    return;
+                                                }
+                                            });
+                                    AlertDialog alert = alert_confirm.create();
+                                    alert.show();
+                                    break;
 
                             }
                         }
@@ -116,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
                     };
                     oData.add(oItem);
                 }
+
                 m_oListView = (ListView)findViewById(R.id.listView);
                 ListAdapter oAdapter = new ListAdapter(oData);
                 m_oListView.setAdapter(oAdapter);

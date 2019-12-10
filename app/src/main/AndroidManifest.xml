@@ -13,8 +13,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
-        <!--        android:theme="@android:style/Theme.NoTitleBar">-->
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,3 +26,6 @@
     </application>
 
 </manifest>
+
+
+<!--    android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">-->
