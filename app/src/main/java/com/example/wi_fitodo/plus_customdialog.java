@@ -31,23 +31,33 @@ public class plus_customdialog {
     private Context context;
     int mYear, mMonth, mDay;
     private String dateText;
+    private String ssid;
 
-    public plus_customdialog(Context context) {
+    private EditText todo;
+    private EditText contents;
+    private EditText due;
+    private Button pbutton;
+    private Button nbutton;
+
+
+
+    public plus_customdialog(Context context, String ssid) {
         this.context = context;
+        this.ssid = ssid;
     }
 
-    private DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
+    private final DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             String dateString = year + "년" + (monthOfYear + 1) + "월" + dayOfMonth + "일";
-            // Toast.makeText(view.getContext(), dateString, Toast.LENGTH_SHORT).show();
             dateText = dateString;
+            due.setText(dateText);
         }
     };
 
     // 호출할 다이얼로그 함수를 정의한다.
     @SuppressLint("ClickableViewAccessibility")
-    public void callFunction(final TextView textView) {
+    public void callFunction() {
 
         // 커스텀 다이얼로그를 정의하기위해 Dialog클래스를 생성한다.
         final Dialog dlg = new Dialog(context);
@@ -62,12 +72,12 @@ public class plus_customdialog {
         dlg.show();
 
         // 커스텀 다이얼로그의 각 위젯들을 정의한다.
+        todo = (EditText) dlg.findViewById(R.id.todo);
+        contents = (EditText) dlg.findViewById(R.id.contents);
+        due = (EditText) dlg.findViewById(R.id.due);
+        pbutton = (Button) dlg.findViewById(R.id.pbutton);
+        nbutton = (Button) dlg.findViewById(R.id.nbutton);
 
-        final EditText todo = (EditText) dlg.findViewById(R.id.todo);
-        final EditText contents = (EditText) dlg.findViewById(R.id.contents);
-        final EditText due = (EditText) dlg.findViewById(R.id.due);
-        final Button pbutton = (Button) dlg.findViewById(R.id.pbutton);
-        final Button nbutton = (Button) dlg.findViewById(R.id.nbutton);
         //현재 날짜와 시간을 가져오기위한 Calendar 인스턴스 선언
 
         Calendar cal = new GregorianCalendar();
@@ -79,12 +89,9 @@ public class plus_customdialog {
         pbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // '확인' 버튼 클릭시 메인 액티비티에서 설정한 main_label에
-                // 커스텀 다이얼로그에서 입력한 메시지를 대입한다.
-                // textView.setText(todo.getText().toString());
 
                 TodoFireBase todoData = new TodoFireBase(todo.getText().toString(), contents.getText().toString(), dateText, false);
-                todoData.insertData(getSSID());
+                todoData.insertData(ssid);
 
                 // 커스텀 다이얼로그를 종료한다.
                 dlg.dismiss();
@@ -101,24 +108,10 @@ public class plus_customdialog {
         due.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog dia = new DatePickerDialog(v.getContext(), listener, 2019, 10, 10);
+                DatePickerDialog dia = new DatePickerDialog(v.getContext(), listener, mYear, mMonth, mDay);
                 dia.show();
             }
         });
     }
 
-    private String getSSID() {
-        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-        }else{//Permission already granted
-            WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-            if(wifiInfo.getSupplicantState() == SupplicantState.COMPLETED){
-                String ssid = wifiInfo.getSSID();
-                Toast.makeText(context, ssid, Toast.LENGTH_SHORT).show();
-                return ssid;
-            }
-        }
-        Toast.makeText(context, "no internet", Toast.LENGTH_SHORT).show();
-        return "no internet";
-    }
 }

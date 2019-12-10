@@ -30,8 +30,8 @@ public class listview_mainactivity extends AppCompatActivity {
         }
 
 // ListView, Adapter 생성 및 연결 ------------------------
-        m_oListView = (ListView)findViewById(R.id.listView);
-        ListAdapter oAdapter = new ListAdapter(oData);
-        m_oListView.setAdapter(oAdapter);
+//        m_oListView = (ListView)findViewById(R.id.listView);
+//        ListAdapter oAdapter = new ListAdapter(oData);
+//        m_oListView.setAdapter(oAdapter);
     }
 }
