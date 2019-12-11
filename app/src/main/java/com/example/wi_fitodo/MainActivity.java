@@ -1,5 +1,6 @@
 package com.example.wi_fitodo;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     ImageButton plus;
+    TextView wifiName;
     private ListView m_oListView = null;
     private String ssid;
 
@@ -47,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
 
         plus = (ImageButton)findViewById(R.id.plus);
         this.ssid = getSSID();
+        wifiName = (TextView) findViewById(R.id.wifiName);
+        wifiName.setText(ssid);
+
         setTodoList();
         String a = FirebaseDatabase.getInstance().getReference().toString() + " END";
         Toast.makeText(this, a, Toast.LENGTH_LONG);
@@ -165,13 +170,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String getSSID() {
-        WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-        if(wifiInfo.getSupplicantState() == SupplicantState.COMPLETED){
-            String ssid = wifiInfo.getSSID();
-            // Toast.makeText(this, ssid, Toast.LENGTH_LONG).show();
-            return ssid;
-        }
+            WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+            if(wifiInfo.getSupplicantState() == SupplicantState.COMPLETED){
+                String ssid = wifiInfo.getSSID();//Here you can access your SSID
+                return ssid;
+            }
         return "no internet";
     }
 

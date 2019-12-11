@@ -9,15 +9,31 @@
     android:orientation="vertical"
     android:background="#CCCCCC">
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="50dp"
-        android:text="ToDo"
-        android:textStyle="bold"
-        android:layout_marginLeft="20dp"
-        android:padding="10dp"
-        android:textColor="#FFFFFF"/>
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="50dp"
+            android:text="ToDo"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"
+            android:padding="10dp"
+            android:textColor="#FFFFFF"/>
+        <TextView
+            android:id="@+id/wifiName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35dp"
+            android:text="wifi"
+            android:layout_marginLeft="20dp"
+            android:padding="10dp"
+            android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+
 
     <RelativeLayout
         android:layout_width="match_parent"
